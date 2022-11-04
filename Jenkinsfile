@@ -15,7 +15,7 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.idados.local', 'registry.idados') {
                         dockerapp.push('latest')
-                        dockerapp.push('${env.BUILD_ID}')
+                        dockerapp.push("${env.BUILD_ID}")
                     }
                 }
             }
