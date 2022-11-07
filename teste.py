@@ -55,9 +55,4 @@ for container in client_docker.containers.list():
                 name = REPOSITORY,
                 ports = PORTS,
                 detach=True)
-    else:
-        container = client_docker.containers.run(
-                image = IMAGE_PULL,
-                name = REPOSITORY,
-                ports = PORTS,
-                detach=True)
+                
