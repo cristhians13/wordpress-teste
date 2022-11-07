@@ -43,8 +43,11 @@ client_docker.images.pull(IMAGE_PULL)
 
 
 print("docker container run")
+
 for container in client_docker.containers.list():
+    print (container.name)
     if REPOSITORY in container.name:
+        print ('Chegou aqui')
         container.stop()
         container.remove()
         container = client_docker.containers.run(
@@ -52,9 +55,9 @@ for container in client_docker.containers.list():
                 name = REPOSITORY,
                 ports = PORTS,
                 detach=True)
-else:
-    container = client_docker.containers.run(
-            image = IMAGE_PULL,
-            name = REPOSITORY,
-            ports = PORTS,
-            detach=True)
+    else:
+        container = client_docker.containers.run(
+                image = IMAGE_PULL,
+                name = REPOSITORY,
+                ports = PORTS,
+                detach=True)
