@@ -20,5 +20,16 @@ pipeline {
                 }
             }
         }
+        
+        stage ('Deploy Container in Windows Server') {
+            steps {
+                sh 'python3 teste.py'
+            }
+        }
     }
 }
+
+
+
+
+
