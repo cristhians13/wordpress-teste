@@ -15,21 +15,24 @@ PASSWORD = os.getenv("PASSWORD")
 REPOSITORY = os.getenv("REPOSITORY")
 TAG = os.getenv("TAG")
 
-PORT_HOST = os.getenv("PORT_HOST")
-PORT_CONTAINER = os.getenv("PORT_CONTAINER")
-
 IMAGE_PULL = "{0}/{1}:{2}".format(REGISTRY, REPOSITORY, TAG)
-PORTS = { PORT_CONTAINER: PORT_HOST }
+PORTS = {}
+
+_PORTS = os.getenv("PORTS")
+_PORTS_LIST = _PORTS.split(',')
+for port in _PORTS_LIST:
+    VAR = port.split(':')
+    PORTS[int(VAR[0])] = int(VAR[1])
 
 BASE_URL = "tcp://{0}:{1}".format(DOCKER_API_SERVER, DOCKER_API_PORT)
 
-
-print("docker type")
 if DOCKER_TYPE.upper() == "UNIX":
-    client_docker = docker.DockerClient(base_url='unix://var/run/docker.sock')
+    BASE_URL = 'unix://var/run/docker.sock'
 else:
-    client_docker = docker.DockerClient(base_url = BASE_URL)
+    BASE_URL = 'tcp://{0}:{1}'.format(DOCKER_API_SERVER, DOCKER_API_PORT)
 
+
+client_docker = docker.DockerClient(base_url = BASE_URL)
 
 print("docker login")
 client_docker.login(
