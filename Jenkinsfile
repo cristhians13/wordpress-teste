@@ -23,7 +23,7 @@ pipeline {
 
         stage ('Deploy Container in Windows Server') {
             steps {
-                sh 'python3 teste.py'
+                sh 'python3 apidocker-deploy.py'
                 // sh 'apidocker-deploy.py'
             }
         }
