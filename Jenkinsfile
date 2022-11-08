@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage ('Variables wp-config.php') {
+            steps {
+                sh 'sed -i s/"DATABASE_NAME"/"mysql"/g wp-config.php'
+            }
+        }
+
+    stages {
         stage ('Build Image') {
             steps {
                 script {
