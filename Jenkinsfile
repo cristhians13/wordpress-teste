@@ -20,10 +20,10 @@ pipeline {
                 }
             }
         }
-        
-
+     
         stage ('Criando .env') {
             steps {
+                script {
                 sh 'touch .env'
                 sh 'echo "DOCKER_TYPE=${env.DOCKER_TYPE}" >> .env'
                 sh 'echo "DOCKER_API_SERVER=${env.DOCKER_API_SERVER}" >> .env'
@@ -34,6 +34,7 @@ pipeline {
                 sh 'echo "REPOSITORY=${env.REPOSITORY}" >> .env'
                 sh 'echo "TAG=${env.TAG}" >> .env'
                 sh 'echo "PORTS=${env.PORTS}" >> .env'
+                }
             }
         }  
 
