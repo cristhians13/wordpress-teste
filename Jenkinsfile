@@ -5,7 +5,7 @@ pipeline {
         stage ('Build Image') {
             steps {
                 script {
-                    dockerapp = docker.build("registry.idados.local/wp-teste:${env.BUILD_ID}", '-f ./Dockerfile ./')
+                    dockerapp = docker.build("${env.IMAGE_NAME}:${env.BUILD_ID}", '-f ./Dockerfile ./')
                 }
             }
         }
@@ -13,7 +13,7 @@ pipeline {
         stage ('Push Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.idados.local', 'registry.idados') {
+                    docker.withRegistry("${env.URL_REGISTRY}", 'registry.idados') {
                         dockerapp.push('latest')
                         dockerapp.push("${env.BUILD_ID}")
                     }
