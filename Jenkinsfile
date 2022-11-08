@@ -23,7 +23,7 @@ pipeline {
         
         stage ('Deploy Container in Windows Server') {
             steps {
-                sh 'python3 pidocker-deploy.py'
+                sh 'pidocker-deploy.py'
             }
         }
     }
