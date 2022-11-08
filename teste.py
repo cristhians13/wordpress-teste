@@ -51,8 +51,11 @@ for container in client_docker.containers.list():
     print (container.name)
     if REPOSITORY in container.name:
         print ('Chegou aqui')
-        container.stop()
-        container.remove()
+        if container.status == 'running':
+            container.stop()
+            container.remove()
+        elif container.status == 'stopped':
+            container.remove()
 container = client_docker.containers.run(
         image = IMAGE_PULL,
         name = REPOSITORY,
