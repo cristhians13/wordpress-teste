@@ -53,9 +53,9 @@ for container in client_docker.containers.list():
         print ('Chegou aqui')
         container.stop()
         container.remove()
-        container = client_docker.containers.run(
-                image = IMAGE_PULL,
-                name = REPOSITORY,
-                ports = PORTS,
-                detach=True)
+container = client_docker.containers.run(
+        image = IMAGE_PULL,
+        name = REPOSITORY,
+        ports = PORTS,
+        detach=True)
                 
