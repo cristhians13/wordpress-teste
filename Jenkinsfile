@@ -20,23 +20,6 @@ pipeline {
                 }
             }
         }
-     
-        stage ('Criando .env') {
-            steps {
-                script {
-                    sh 'touch .env'
-                    sh 'echo "DOCKER_TYPE=${env.DOCKER_TYPE}" >> .env'
-                    sh 'echo "DOCKER_API_SERVER=${env.DOCKER_API_SERVER}" >> .env'
-                    sh 'echo "DOCKER_API_PORT=${env.DOCKER_API_PORT}" >> .env'
-                    sh 'echo "REGISTRY=${env.REGISTRY}" >> .env'
-                    sh 'echo "USERNAME=${env.USERNAME}" >> .env'
-                    sh 'echo "PASSWORD=${env.PASSWORD}" >> .env'
-                    sh 'echo "REPOSITORY=${env.REPOSITORY}" >> .env'
-                    sh 'echo "TAG=${env.TAG}" >> .env'
-                    sh 'echo "PORTS=${env.PORTS}" >> .env'
-                }
-            }
-        }  
 
         stage ('Deploy Container in Windows Server') {
             steps {
