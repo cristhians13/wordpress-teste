@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Variables wp-config.php') {
             steps {
-                sh 'sed -i s/"DATABASE_NAME"/'${env.DATABASE_NAME}'/g wp-config.php'
+                sh 'sed -i s/"DATABASE_NAME"/"{env.DATABASE_NAME}"/g wp-config.php'
                 sh 'sed -i s/"DATABASE_USER"/"root"/g wp-config.php'
                 sh 'sed -i s/"DATABASE_PASSWORD"/"JAVA>PHPin2012IN!2018"/g wp-config.php'
                 sh 'sed -i s/"DATABASE_HOST"/"10.10.10.6:3306"/g wp-config.php'
